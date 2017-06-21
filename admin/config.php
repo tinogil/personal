@@ -5,3 +5,4 @@
     define('E_MAIL','tino@tinogil.com'); 
     define('DB_NAME','radio2'); 
     define('DB_CHARSET','utf8');
+    define('FOLDER','personal');

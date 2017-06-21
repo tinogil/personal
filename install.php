@@ -1,5 +1,16 @@
 <?php
-include 'templates/header.php';
+echo '<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Radio Macuto</title>
+    <meta name="description" content="Radio por internet">
+    <meta name="viewport" content="width=device-width, initial-scale=1 ">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="./css/uikit.min.css">
+    <link rel="stylesheet" href="./css/mdui.css">
+</head>';
 $sql='';
 ;
 //comprobamos si se ha enviado un formulario
@@ -15,7 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" )
     define('DB_PASS','".$_POST['pass']."'); 
     define('E_MAIL','".$_POST['mail']."'); 
     define('DB_NAME','radio2'); 
-    define('DB_CHARSET','utf8');";
+    define('DB_CHARSET','utf8');
+    define('FOLDER','".$_POST['carpeta']."');";
     fwrite($file,$str);     //creamos el archivo de configuración
     fclose($file);
     $file2 = fopen("./radio.sql", "r") or die("No puedo abrir o crear el archivo!");
@@ -90,28 +102,38 @@ else{
 }
     }
     else
-    {
-        echo '<div uk-grid class=" uk-flex-center uk-text-center "><div></div><h1>Instalación de la aplicación</h1>';
-echo '<div></div><div>Para instalar la aplicación escriba los detalles de la base de datos:</div>';
+   {
+echo '<div uk-grid class=" uk-flex-center uk-text-center "><div  class="uk-flex-center  uk-width-1-4@s uk-margin z-depth-3"><div></div><div><h1>Instalación de la aplicación</h1></div><div></div>';
+echo '<div></div><div><p>Para instalar la aplicación escriba los detalles de la base de datos:</p></div>';
 echo '<div></div><div >
     No coinciden las contraseñas<br>';
      echo 'Seguidamente incluya los datos de usuario y contraseña para ser administrador, su nombre de usuario será el email:<br>';
 echo '<form action="install.php" method="post">
 	<label>Nombre</label><br><input type="text" name="admin" placeholder="nombre..." size="15"><br><label>Apellidos</label><br><input type="text" name="surname" placeholder="Apellidos..." size="15"><br><label>Contraseña</label><br><input type="password" placeholder="contraseña..." name="passw" size="15">
 	<br><label>Confirmar contraseña</label><br><input type="password" placeholder="contraseña..." name="passw2" size="15"><br><label>Correo electrónico personal</label><br><input type="text" name="mail2" placeholder="email..." size="15"><br>
-    <br><input type="submit" value="submit" class="uk-button uk-button-blue-grey"></form></div></div>';
+        <label>Carpeta de instalacion</label><br><input type="text" name="carpeta" placeholder="carpeta..." size="15"><br>
+    <br><input type="submit" value="submit" class="uk-button uk-button-blue-grey"></form></div></div></div>';
     }
 }
 $conn->close();
 }
 else
 {
-echo '<div uk-grid class=" uk-flex-center uk-text-center "><div></div><h1>Instalación de la aplicación</h1>';
-echo '<div></div><div>Para instalar la aplicación escriba los detalles de la base de datos:</div>';
+echo '<div uk-grid class=" uk-flex-center uk-text-center "><div  class="uk-flex-center  uk-width-1-4@s uk-margin z-depth-3"><div></div><div><h1>Instalación de la aplicación</h1></div><div></div>';
+echo '<div></div><div><p>Para instalar la aplicación escriba los detalles de la base de datos:</p></div>';
 echo '<div></div><div >
 	<form action="install.php" method="post">
 	<label>Usuario de la base de datos</label><br><input type="text" name="user" placeholder="usuario..." size="15"><br><label>Contraseña</label><br><input type="password" placeholder="contraseña..." name="contra" size="15">
 	<br><label>Correo electrónico</label><br><input type="text" name="mail" placeholder="email..." size="15"><br>
-    <br><input type="submit" value="submit" class="uk-button uk-button-blue-grey"></form></div></div>';
+    <label>Carpeta de instalacion</label><br><input type="text" name="carpeta" placeholder="carpeta..." size="15"><br>
+    <br><input type="submit" value="submit" class="uk-button uk-button-blue-grey"></form></div></div></div>';
     
 }
+echo ' <!-- Enlaces de texto y copyright-->
+    <footer>&copy; Tino Gil</footer>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="./js/uikit.min.js"></script>
+    <script src="./js/site.js"></script>
+</body>
+
+</html>';
